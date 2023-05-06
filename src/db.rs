@@ -15,21 +15,9 @@ pub async fn insert_into_db(ticket: &Ticket) -> Result<(), ParserError> {
     for factura in facturas.iter() {
         match factura {
             Ok(factura) => {
-                let Factura {
-                    header,
-                    items,
-                    trailer,
-                } = factura;
-                let Header {
-                    numero_de_factura,
-                    id_cliente,
-                    fecha,
-                    denominacion,
-                } = header;
-                let Trailer {
-                    numero_de_items,
-                    valor_total,
-                } = trailer;
+                let Factura { header, items, trailer, } = factura;
+                let Header { numero_de_factura, id_cliente, fecha, denominacion, } = header;
+                let Trailer { numero_de_items, valor_total, } = trailer;
 
                 let mut queries = vec![];
                 queries.push(sqlx::query!(

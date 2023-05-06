@@ -46,12 +46,22 @@ impl FromStr for Factura {
     fn from_str(st: &str) -> Result<Self, Self::Err> {
         let s = st.split('\n').collect::<Vec<_>>();
 
-        if s.len() < 3 {
+        if s.len() < 2 {
             return Err(ParserError::new(
                 ParserErrorType::FacturaError,
                 "3 arguments",
                 &format!("{} in Factura", s.len()),
             ));
+        }
+
+        if s.len() == 2 {
+            let header = s[0].parse::<Header>()?;
+            let trailer = s[s.len() - 1].parse::<Trailer>()?;
+            return Ok(Factura {
+                header,
+                items : vec![],
+                trailer,
+            })
         }
 
         let header = s[0].parse::<Header>()?;

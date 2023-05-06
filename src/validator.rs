@@ -17,9 +17,9 @@ pub fn validate_factura(factura: &Factura) -> Result<(), ParserError> {
     let suma_de_valor_neto = factura
         .items
         .iter()
-        .fold(0 as f32, |acc, value| acc + value.valor_neto);
+        .fold(0 as f32, |acc, item| acc +  item.valor_neto );
 
-    if !(suma_de_valor_neto == factura.trailer.valor_total) {
+    if !(suma_de_valor_neto == factura.trailer.valor_total ) {
         return Err(ParserError::new(
             ParserErrorType::ItemSumNotEqual,
             &factura.trailer.valor_total.to_string(),
