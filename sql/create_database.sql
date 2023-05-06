@@ -37,6 +37,10 @@ create type parserError as enum(
     'InvalidDate',
     'InvalidPath',
     'FailedDBConnection'
+    'InvalidNumberOfArguments',
+    'ItemSumNotEqual',
+    'NotSameItems',
+    'ValidationError'
 );
 
 drop table if exists logs cascade;

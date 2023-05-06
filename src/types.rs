@@ -54,7 +54,10 @@ pub enum ParserErrorType {
     InvalidDate,
     InvalidPath,
     FailedDBConnection,
-    InvalidNumberOfArguments
+    InvalidNumberOfArguments,
+    ItemSumNotEqual,
+    NotSameItems,
+    ValidationError
 }
 
 #[derive(Debug)]
